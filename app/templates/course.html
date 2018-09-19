@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for course in courses %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h2 class="article-title">
+                {{ course.subject }} {{ course.catalog_number }} — {{ course.title }}
+            </h2>
+            <p>Description: {{ course.description }}</p>
+            <p>Prerequisites: {{ course.prerequisites }}</p>
+            <p>Antirequisites: {{ course.antirequisites }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

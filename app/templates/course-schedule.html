@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for section in course %}
+
+        <article class="media content-section">
+          <div class="media-body">
+            <h2 class="article-title">
+                {{ section.subject }} {{ section.catalog_number }} — {{ section.section }}
+            </h2>
+            <p>Units: {{ section.units }}</p>
+            <p>Class Number: {{ section.class_number }}</p>
+            <p>Campus: {{ section.campus }}</p>
+            <p>Academic Level: {{ section.academic_level }}</p>
+            <p>Classes: {{ section.classes }}</p>
+
+          </div>
+        </article>
+     {% endfor %}
+{% endblock content %}

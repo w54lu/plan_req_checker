@@ -1,4 +1,47 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Home Page</h1>
+    <div class="content-section">
+        <form method="GET" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{ form.term.label }}
+                    {{ form.term }}
+                </div>
+                <div class="form-group">
+                    {{ form.subject.label }}
+                    {{ form.subject }}
+                </div>
+                <div class="form-group">
+                    {{ form.catalog.label }}
+                    {{ form.catalog }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>          
+        </form>
+    </div>
 {% endblock content %}
+{% block row %}
+    {% if current_user.is_authenticated %}
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center">My Timetable</h3>
+            </div>
+        </div>
+        {% for enroll in enrolls %}
+        <div class="row">
+            <div class="col-md-12">
+                <p>{{ enroll.subject }} {{ enroll.catalog_number }} — {{ enroll.section }}</p>
+                {% for class in enroll.classes %}
+                    <p>{{ class.date.start_time }} — {{ class.date.end_time }} {{ class.date.weekdays }}</p>
+                    <p>Location: {{ class.location.building }} {{ class.location.room }}</p>
+                    <p>Instructors: {{ class.instructors }}</p>
+                {% endfor %}
+                <br>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endblock row %}
