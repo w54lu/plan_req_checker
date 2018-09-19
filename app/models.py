@@ -27,7 +27,7 @@ class Enroll(db.Model):
         return f"Enroll('{self.user_id}', '{self.class_number}')"
 
 
-class UWFaculty(bd.Model):
+class UWFaculty(db.Model):
     faculty_code = db.Column(db.String(10), primary_key=True)
     faculty_name = db.Column(db.String(20), nullable=False)
 
